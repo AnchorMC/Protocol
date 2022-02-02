@@ -7,7 +7,7 @@ go get github.com/AnchorMC/Protocol
 ```
 
 ## Documentation
-https://pkg.go.dev/github.com/AnchorMC/Protocol
+https://pkg.go.dev/github.com/anchormc/protocol
 
 ## Examples
 
