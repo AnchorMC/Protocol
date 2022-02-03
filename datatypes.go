@@ -434,6 +434,10 @@ func (v *VarInt) Decode(r io.Reader) (int64, error) {
 	return n, err
 }
 
+func (v VarInt) ByteLength() int64 {
+	return VarIntLength(int32(v))
+}
+
 func (v VarLong) Encode(w io.Writer) (int64, error) {
 	return WriteVarLong(int64(v), w)
 }
@@ -444,6 +448,10 @@ func (v *VarLong) Decode(r io.Reader) (int64, error) {
 	*v = VarLong(value)
 
 	return n, err
+}
+
+func (v VarLong) ByteLength() int64 {
+	return VarLongLength(int64(v))
 }
 
 func (v RelativePosition) Encode(w io.Writer) (int64, error) {
