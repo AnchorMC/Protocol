@@ -9,6 +9,8 @@ import (
 	"math"
 	"reflect"
 	"regexp"
+
+	"github.com/Tnze/go-mc/nbt"
 )
 
 var (
@@ -586,9 +588,15 @@ func (v *Array) Decode(r io.Reader) (int64, error) {
 }
 
 func (v NBT) Encode(w io.Writer) (int64, error) {
-	// TODO NBT encoder
+	if v.Value == nil {
+		n, err := w.Write([]byte{0})
 
-	return 0, errors.New("NBT encode not implemented")
+		return int64(n), err
+	}
+
+	// TODO calculate bytes written for NBT tag
+
+	return -1, nbt.NewEncoder(w).Encode(v.Value, v.RootTag)
 }
 
 func (v *NBT) Decode(r io.Reader) (int64, error) {
