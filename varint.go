@@ -65,10 +65,12 @@ func VarIntLength(value int32) int64 {
 	var numWritten int64 = 0
 
 	for {
+		value = int32(uint32(value) >> 7)
+
+		numWritten++
+
 		if (uint32(value) & 0xFFFFFF80) == 0 {
 			return numWritten
 		}
-
-		value = int32(uint32(value) >> 7)
 	}
 }
